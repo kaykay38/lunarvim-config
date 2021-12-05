@@ -1,0 +1,5 @@
+local set_keymap = vim.api.nvim_set_keymap()
+set_keymap('n','<leader>h',':wincmd h', {noremap = true, silent = true })
+set_keymap('n','<leader>l',':wincmd l', {noremap = true, silent = true })
+set_keymap('n','<leader>j',':wincmd j', {noremap = true, silent = true })
+set_keymap('n','<leader>k',':wincmd k', {noremap = true, silent = true })
