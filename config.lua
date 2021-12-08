@@ -20,6 +20,12 @@ lvim.builtin.tabnine = { active = true }
 lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<leader>x"] = ":BufferClose<cr>"
+vim.api.nvim_set_keymap('n',"<A-f>",":m .+1<cr>==",{ silent = true })
+vim.api.nvim_set_keymap('n',"<A-d>",":m .-2<CR>==",{ silent = true })
+vim.api.nvim_set_keymap('v',"<A-f>",":m '>+1<CR>gv=gv",{ silent = true })
+vim.api.nvim_set_keymap('v',"<A-d>",":m '<-2<CR>gv=gv",{ silent = true })
+vim.api.nvim_set_keymap('i',"<A-d>","<Esc>:m .-2<CR>==gi",{ silent = true })
+vim.api.nvim_set_keymap('i',"<A-f>","<Esc>:m .+1<CR>==gi",{ silent = true })
 -- add your own keymapping
 lvim.builtin.which_key.mappings["sw"] = {"bviw :call search#search_visual() | lua print('Searching Duckduckgo')<cr>", "Quick Websearch"}
 lvim.builtin.which_key.mappings["sw"] = {":call search#search_visual() | lua print('Searching Duckduckgo')<cr>", "Quick Websearch"}
@@ -108,6 +114,8 @@ lvim.plugins = {
     {"rktjmp/lush.nvim"},
     {"ellisonleao/gruvbox.nvim"},
     {"voldikss/vim-browser-search"},
+    {"Pocco81/AutoSave.nvim"},
+    {"tpope/vim-surround"}
 }
 require'colorizer'.setup()
 
