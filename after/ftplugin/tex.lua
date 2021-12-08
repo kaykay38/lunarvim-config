@@ -2,7 +2,7 @@ vim.opt_local.spell = true
 local cmp = require "cmp"
 vim.list_extend(lvim.lsp.override, { "texlab" })
 require'lspconfig'.texlab.setup{
-    cmd = {"/home/mia/.local/share/nvim/lsp_servers/latex/texlab"},
+    cmd = { os.getenv("HOME").."/.local/share/nvim/lsp_servers/latex/texlab"},
     filetypes = {"tex", "bib"},
     settings = {
         texlab = {

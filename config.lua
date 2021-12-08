@@ -107,7 +107,6 @@ lvim.builtin.treesitter.highlight.enabled = true
 lvim.format_on_save = false
 lvim.lint_on_save = true
 lvim.lsp.diagnostics.virtual_text = false
--- vim.list_extend(lvim.lsp.override, { "texlab" })
 -- Additional Plugins
 lvim.plugins = {
     {"norcalli/nvim-colorizer.lua"},
