@@ -19,7 +19,7 @@
 --     { name = "path" },
 --   },
 -- }
-local function run_cur_file_in_sp_term ()
+local function run_in_sp_term ()
     local name = vim.api.nvim_eval('expand(\"%:r\")')
     local class_path = name:gsub("src/", "")
     class_path = class_path:gsub("/",".")
@@ -30,7 +30,7 @@ end
 
 -- vim.api.nvim_buf_set_keymap("0","n","<leader>r",":lua print(vim.api.nvim_eval('expand(\"%:r\")')<cr>", {noremap = true})
 vim.api.nvim_buf_set_keymap("0","n","<leader>lb",":make<CR>|:copen<cr>", {noremap = true})
-vim.api.nvim_buf_set_keymap("0","n","<leader>r",get_java_run_in_sp_term(), {noremap = true})
+vim.api.nvim_buf_set_keymap("0","n","<leader>r",run_in_sp_term(), {noremap = true})
 vim.api.nvim_buf_set_keymap("0","n","<leader>lco",":copen<CR>", {noremap = true})
 vim.api.nvim_buf_set_keymap("0","n","<leader>lcj",":cnext<CR>", {noremap = true})
 vim.api.nvim_buf_set_keymap("0","n","<leader>lck",":cprev<CR>", {noremap = true})
