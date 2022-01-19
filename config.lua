@@ -3,7 +3,7 @@
 -- general
 lvim.log.level = "warn"
 lvim.transparent_window = true
-lvim.colorscheme = "gruvbox"
+lvim.colorscheme = "kanagawa"
 lvim.builtin.lualine.sections.lualine_y = {"location"}
 lvim.builtin.lualine.sections.lualine_z = {"progress"}
 vim.opt.relativenumber = true
@@ -29,7 +29,6 @@ vim.api.nvim_set_keymap('i',"<A-f>","<Esc>:m .+1<CR>==gi",{ silent = true })
 -- add your own keymapping
 lvim.builtin.which_key.mappings["sw"] = {"bviw :call search#search_visual() | lua print('Searching Duckduckgo')<cr>", "Quick Websearch"}
 lvim.builtin.which_key.mappings["sw"] = {":call search#search_visual() | lua print('Searching Duckduckgo')<cr>", "Quick Websearch"}
-lvim.builtin.which_key.mappings["sd"] = {':!$BROWSER \'https://drive.google.com/drive/u/0/folders/1CcBOpVlnq3M1eUd2BF_AZl-XQ95-wrIM?ths=true\' &<cr>', "Open Google Drive folder", silent = true}
 
 -- Colemak navigation
 -- lvim.keys.normal_mode["<C-i>"] = ":wincmd l<cr>"
@@ -107,16 +106,27 @@ lvim.builtin.treesitter.highlight.enabled = true
 lvim.format_on_save = false
 lvim.lint_on_save = true
 lvim.lsp.diagnostics.virtual_text = false
+
+require('luasnip').filetype_extend("javascript", { "javascriptreact" })
+
+require('luasnip').filetype_extend("javascript", { "html" })
+
 -- Additional Plugins
 lvim.plugins = {
     {"norcalli/nvim-colorizer.lua"},
     {"rktjmp/lush.nvim"},
-    {"ellisonleao/gruvbox.nvim"},
+    {"rebelot/kanagawa.nvim"},
     {"voldikss/vim-browser-search"},
     {"Pocco81/AutoSave.nvim"},
-    {"tpope/vim-surround"}
+    {"tpope/vim-surround"},
+    {"windwp/nvim-ts-autotag"},
+    {"kevinhwang91/nvim-bqf"},
+    {"mattn/emmet-vim"},
+    {"dccsillag/magma-nvim", run = ":UpdateRemotePlugins"},
 }
+require'nvim-ts-autotag'.setup()
 require'colorizer'.setup()
+require'autosave'.setup()
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {

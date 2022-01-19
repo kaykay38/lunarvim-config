@@ -13,6 +13,6 @@ if exists(":CompilerSet") != 2		" older Vim always used :setlocal
   command -nargs=* CompilerSet setlocal <args>
 endif
 
-CompilerSet makeprg=lualatex\ \-\-output\-format=pdf\ \-\-file\-line\-error\ \-\-interaction=nonstopmode\ \-shell\-escape\ %\ \\\|\ grep\ \-oP\ '.*:\\d+:.*'
+CompilerSet makeprg=lualatex\ \-\-output\-format=pdf\ \-\-file\-line\-error\ \-\-interaction=nonstopmode\ \-shell\-escape\ %\ \\\|\ rg\ \-NoP\ '.*:\\d+:.*'
 
 CompilerSet errorformat=%f:%l:\ %m

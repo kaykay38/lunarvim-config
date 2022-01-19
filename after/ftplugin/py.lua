@@ -1,0 +1,6 @@
+vim.api.nvim_buf_set_keymap("0","n","<Leader>r",":MagmaEvaluateOperator<CR>", {expr = "true"})
+vim.api.nvim_buf_set_keymap("0","n","<Leader>rr",":MagmaEvaluateLine<CR>")
+vim.api.nvim_buf_set_keymap("0","n","<Leader>rc",":MagmaReevaluateCell<CR>")
+vim.api.nvim_buf_set_keymap("0","n","<Leader>rd",":MagmaDelete<CR>")
+vim.api.nvim_buf_set_keymap("0","n","<Leader>ro",":MagmaShowOutput<CR>")
+vim.api.nvim_buf_set_keymap("0","x","<Leader>r",":<C-u>MagmaEvaluateVisual<CR>")
