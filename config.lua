@@ -21,7 +21,7 @@ lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<leader>x"] = ":BufferClose<cr>"
 vim.api.nvim_set_keymap('n',"<A-f>",":m .+1<cr>==",{ silent = true })
-vim.api.nvim_set_keymap('n',"<A-d>",":m .-2<CR>==",{ silent = true })
+vim.api.nvim_set_keymap('n',"<A-f>",":m .+1<cr>==",{ silent = true })
 vim.api.nvim_set_keymap('v',"<A-f>",":m '>+1<CR>gv=gv",{ silent = true })
 vim.api.nvim_set_keymap('v',"<A-d>",":m '<-2<CR>gv=gv",{ silent = true })
 vim.api.nvim_set_keymap('i',"<A-d>","<Esc>:m .-2<CR>==gi",{ silent = true })
@@ -123,6 +123,8 @@ lvim.plugins = {
     {"kevinhwang91/nvim-bqf"},
     {"mattn/emmet-vim"},
     {"dccsillag/magma-nvim", run = ":UpdateRemotePlugins"},
+    {"iamcco/markdown-preview.nvim"},
+    {"dhruvasagar/vim-table-mode"},
 }
 require'nvim-ts-autotag'.setup()
 require'colorizer'.setup()
