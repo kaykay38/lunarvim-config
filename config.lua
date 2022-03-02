@@ -135,7 +135,7 @@ lvim.plugins = {
     {"kevinhwang91/nvim-bqf"},
     {"mattn/emmet-vim"},
     {"dccsillag/magma-nvim", run = ":UpdateRemotePlugins"},
-    {"iamcco/markdown-preview.nvim"},
+    {"iamcco/markdown-preview.nvim", run = [[sh -c 'cd app && yarn install']], opt = true, ft = "markdown"},
     {"dhruvasagar/vim-table-mode"},
 }
 require'nvim-ts-autotag'.setup()
