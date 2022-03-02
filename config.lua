@@ -1,9 +1,12 @@
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
+-- Appearance
+-- vim.cmd("set term=builtin_ansi")
+
 -- general
 lvim.log.level = "warn"
 lvim.transparent_window = true
-lvim.colorscheme = "kanagawa"
+lvim.colorscheme = "gruvbox"
 lvim.builtin.lualine.sections.lualine_y = {"location"}
 lvim.builtin.lualine.sections.lualine_z = {"progress"}
 vim.opt.relativenumber = true
@@ -26,9 +29,14 @@ vim.api.nvim_set_keymap('v',"<A-f>",":m '>+1<CR>gv=gv",{ silent = true })
 vim.api.nvim_set_keymap('v',"<A-d>",":m '<-2<CR>gv=gv",{ silent = true })
 vim.api.nvim_set_keymap('i',"<A-d>","<Esc>:m .-2<CR>==gi",{ silent = true })
 vim.api.nvim_set_keymap('i',"<A-f>","<Esc>:m .+1<CR>==gi",{ silent = true })
+vim.api.nvim_set_keymap('i',"<A-f>","<Esc>:m .+1<CR>==gi",{ silent = true })
 -- add your own keymapping
 lvim.builtin.which_key.mappings["sw"] = {"bviw :call search#search_visual() | lua print('Searching Duckduckgo')<cr>", "Quick Websearch"}
 lvim.builtin.which_key.mappings["sw"] = {":call search#search_visual() | lua print('Searching Duckduckgo')<cr>", "Quick Websearch"}
+lvim.builtin.which_key.mappings["+"] = {":resize +5<cr>", "Increase window height"}
+lvim.builtin.which_key.mappings["_"] = {":resize -5<cr>", "Decrease window height"}
+lvim.builtin.which_key.mappings["="] = {":vertical resize +5<cr>", "Increase window width"}
+lvim.builtin.which_key.mappings["-"] = {":vertical resize -5<cr>", "Decrease window width"}
 
 -- Colemak navigation
 -- lvim.keys.normal_mode["<C-i>"] = ":wincmd l<cr>"
@@ -111,11 +119,15 @@ require('luasnip').filetype_extend("javascript", { "javascriptreact" })
 
 require('luasnip').filetype_extend("javascript", { "html" })
 
+
+
 -- Additional Plugins
 lvim.plugins = {
     {"norcalli/nvim-colorizer.lua"},
     {"rktjmp/lush.nvim"},
-    {"rebelot/kanagawa.nvim"},
+    -- {"rebelot/kanagawa.nvim"},
+    -- {"sainnhe/everforest"},
+    {"ellisonleao/gruvbox.nvim"},
     {"voldikss/vim-browser-search"},
     {"Pocco81/AutoSave.nvim"},
     {"tpope/vim-surround"},
@@ -129,6 +141,8 @@ lvim.plugins = {
 require'nvim-ts-autotag'.setup()
 require'colorizer'.setup()
 require'autosave'.setup()
+require'lsp-config.swift'
+require'lsp-config.php'
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {
