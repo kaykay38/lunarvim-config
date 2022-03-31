@@ -5,6 +5,6 @@ require'lspconfig'.intelephense.setup{
 }
 
 require'lspconfig'.phpactor.setup{
-    cmd = {os.getenv("HOME").."/.local/share/nvim/lsp_servers/phpactor.tmp/bin/phpactor","language-server"},
+    cmd = {os.getenv("HOME").."/.local/share/nvim/lsp_servers/phpactor-source/bin/phpactor","language-server"},
     root_dir = lspconf.util.root_pattern("*.php","composer.json", ".git") or vim.fn.getcwd()
 }

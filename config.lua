@@ -1,5 +1,4 @@
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
-
 -- Appearance
 -- vim.cmd("set term=builtin_ansi")
 
@@ -23,55 +22,78 @@ lvim.builtin.tabnine = { active = true }
 lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<leader>x"] = ":BufferClose<cr>"
-vim.api.nvim_set_keymap('n',"<A-f>",":m .+1<cr>==",{ silent = true })
-vim.api.nvim_set_keymap('n',"<A-f>",":m .+1<cr>==",{ silent = true })
-vim.api.nvim_set_keymap('v',"<A-f>",":m '>+1<CR>gv=gv",{ silent = true })
-vim.api.nvim_set_keymap('v',"<A-d>",":m '<-2<CR>gv=gv",{ silent = true })
-vim.api.nvim_set_keymap('i',"<A-d>","<Esc>:m .-2<CR>==gi",{ silent = true })
-vim.api.nvim_set_keymap('i',"<A-f>","<Esc>:m .+1<CR>==gi",{ silent = true })
-vim.api.nvim_set_keymap('i',"<A-f>","<Esc>:m .+1<CR>==gi",{ silent = true })
--- add your own keymapping
+vim.api.nvim_set_keymap('n',"<A-f>",":m .+1<cr>==",{ silent = true, noremap = true })
+vim.api.nvim_set_keymap('n',"<A-f>",":m .+1<cr>==",{ silent = true, noremap = true })
+vim.api.nvim_set_keymap('v',"<A-f>",":m '>+1<CR>gv=gv",{ silent = true, noremap = true })
+vim.api.nvim_set_keymap('v',"<A-d>",":m '<-2<CR>gv=gv",{ silent = true, noremap = true })
+vim.api.nvim_set_keymap('i',"<A-d>","<Esc>:m .-2<CR>==gi",{ silent = true, noremap = true })
+vim.api.nvim_set_keymap('i',"<A-f>","<Esc>:m .+1<CR>==gi",{ silent = true, noremap = true })
+vim.api.nvim_set_keymap('i',"<A-f>","<Esc>:m .+1<CR>==gi",{ silent = true, noremap = true })
 lvim.builtin.which_key.mappings["sw"] = {"bviw :call search#search_visual() | lua print('Searching Duckduckgo')<cr>", "Quick Websearch"}
-lvim.builtin.which_key.mappings["sw"] = {":call search#search_visual() | lua print('Searching Duckduckgo')<cr>", "Quick Websearch"}
+lvim.builtin.which_key.vmappings["sw"] = {":call search#search_visual() | lua print('Searching Duckduckgo')<cr>", "Quick Websearch"}
 lvim.builtin.which_key.mappings["+"] = {":resize +5<cr>", "Increase window height"}
 lvim.builtin.which_key.mappings["_"] = {":resize -5<cr>", "Decrease window height"}
 lvim.builtin.which_key.mappings["="] = {":vertical resize +5<cr>", "Increase window width"}
 lvim.builtin.which_key.mappings["-"] = {":vertical resize -5<cr>", "Decrease window width"}
 
--- Colemak navigation
--- lvim.keys.normal_mode["<C-i>"] = ":wincmd l<cr>"
--- lvim.keys.normal_mode["<C-n>"] = ":wincmd j<cr>"
--- lvim.keys.normal_mode["<C-e>"] = ":wincmd k<cr>"
--- lvim.keys.normal_mode["<C-j>"] = "<NOP>"
--- lvim.keys.normal_mode["<C-k>"] = "<NOP>"
--- lvim.keys.normal_mode["<C-l>"] = "<NOP>"
--- lvim.keys.insert_mode["A-e"] = "<ESC>"
--- lvim.keys.normal_mode["j"] = "n"
--- lvim.keys.normal_mode["l"] = "i"
--- lvim.keys.normal_mode["L"] = "I"
--- lvim.keys.normal_mode["k"] = "n"
--- lvim.keys.normal_mode["<S-k>"] = "N"
--- lvim.keys.normal_mode["n"] = "j"
--- lvim.keys.normal_mode["N"] = "J"
--- lvim.keys.normal_mode["e"] = "k"
--- lvim.keys.normal_mode["E"] = "K"
--- lvim.keys.normal_mode["i"] = "l"
--- lvim.keys.visual_block_mode["n"] = "j"
--- lvim.keys.visual_block_mode["e"] = "k"
--- lvim.keys.visual_block_mode["i"] = "l"
--- lvim.keys.visual_mode["n"] = "j"
--- lvim.keys.visual_mode["e"] = "k"
--- lvim.keys.visual_mode["i"] = "l"
--- lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
--- lvim.keys.normal_mode["gn"] = "gj"
--- lvim.keys.normal_mode["ge"] = "gk"
--- lvim.keys.visual_block_mode["gn"] = "gj"
--- lvim.keys.visual_block_mode["ge"] = "gk"
--- lvim.keys.visual_mode["gn"] = "gj"
--- lvim.keys.visual_mode["ge"] = "gk"
--- unmap a default keymapping
+lvim.builtin.which_key.mappings["n"] = {
+    name = "Package manager",
+    s = {"<cmd>lua require('package-info').show({force = true})<cr>", "Show package info"},
+    c = {"<cmd>lua require('package-info').change_version()<cr>", "Change package version"},
+    d = {"<cmd>lua require('package-info').delete()<cr>", "Delete package"},
+    i = {"<cmd>lua require('package-info').install()<cr>", "Install new package"},
+    r = {"<cmd>lua require('package-info').install()<cr>", "Reinstall package"},
+}
 
--- edit a default keymapping
+-- Colemak navigation
+-- -- nnoremap u i
+-- vim.api.nvim_set_keymap('n',"u","i",{ silent = true, noremap = true })
+-- -- vnoremap u i
+-- vim.api.nvim_set_keymap('v',"u","i",{ silent = true, noremap = true })
+-- -- nnoremap u I
+-- vim.api.nvim_set_keymap('n',"U","I",{ silent = true, noremap = true })
+-- -- vnoremap u I
+-- vim.api.nvim_set_keymap('v',"U","I",{ silent = true, noremap = true })
+-- vim.api.nvim_set_keymap('',"U","I",{ silent = true, noremap = true })
+-- -- nnoremap l u
+-- vim.api.nvim_set_keymap('n',"l","u",{ silent = true, noremap = true })
+-- -- vnoremap l u
+-- vim.api.nvim_set_keymap('v',"l","u",{ silent = true, noremap = true })
+-- -- nnoremap L U
+-- vim.api.nvim_set_keymap('n',"L","U",{ silent = true, noremap = true })
+-- -- vnoremap L U
+-- vim.api.nvim_set_keymap('v',"L","U",{ silent = true, noremap = true })
+-- -- " right hand nav
+-- -- nnoremap n j
+-- vim.api.nvim_set_keymap('n',"n","j",{ silent = true, noremap = true })
+-- -- vnoremap n j
+-- vim.api.nvim_set_keymap('v',"n","j",{ silent = true, noremap = true })
+-- -- nnoremap e k
+-- vim.api.nvim_set_keymap('n',"e","k",{ silent = true, noremap = true })
+-- -- vnoremap e k
+-- vim.api.nvim_set_keymap('v',"e","k",{ silent = true, noremap = true })
+-- -- nnoremap e k
+-- vim.api.nvim_set_keymap('n',"E","K",{ silent = true, noremap = true })
+-- -- vnoremap e k
+-- vim.api.nvim_set_keymap('v',"E","K",{ silent = true, noremap = true })
+-- -- nnoremap i l
+-- vim.api.nvim_set_keymap('n',"i","l",{ silent = true, noremap = true })
+-- -- vnoremap i l
+-- vim.api.nvim_set_keymap('v',"i","l",{ silent = true, noremap = true })
+-- -- nnoremap k n
+-- vim.api.nvim_set_keymap('n',"k","n",{ silent = true, noremap = true })
+-- -- nnoremap K N
+-- vim.api.nvim_set_keymap('n',"K","N",{ silent = true, noremap = true })
+-- -- " m goes to insert mode, or with shift at beginning of line
+-- -- -- nnoremap m i
+-- -- vim.api.nvim_set_keymap('n',"m","i",{ silent = true, noremap = true })
+-- -- -- nnoremap M I
+-- -- vim.api.nvim_set_keymap('n',"M","k",{ silent = true, noremap = true })
+
+-- -- " shift+i does nothing
+-- -- nnoremap I <nop>
+-- vim.api.nvim_set_keymap('n',"I","<nop>",{ silent = true, noremap = true })
+-- END Colemak navigation
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- lvim.builtin.telescope.on_config_done = function()
@@ -100,7 +122,7 @@ lvim.builtin.which_key.mappings["-"] = {":vertical resize -5<cr>", "Decrease win
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.dashboard.active = true
+lvim.builtin.alpha.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
@@ -132,17 +154,24 @@ lvim.plugins = {
     {"Pocco81/AutoSave.nvim"},
     {"tpope/vim-surround"},
     {"windwp/nvim-ts-autotag"},
+    {"vuki656/package-info.nvim"},
     {"kevinhwang91/nvim-bqf"},
     {"mattn/emmet-vim"},
     {"dccsillag/magma-nvim", run = ":UpdateRemotePlugins"},
     {"iamcco/markdown-preview.nvim", run = [[sh -c 'cd app && yarn install']], opt = true, ft = "markdown"},
     {"dhruvasagar/vim-table-mode"},
 }
-require'nvim-ts-autotag'.setup()
 require'colorizer'.setup()
 require'autosave'.setup()
-require'lsp-config.swift'
 require'lsp-config.php'
+require'lsp-config.swift'
+
+require('luasnip').filetype_extend("javascript", { "javascriptreact" })
+require('luasnip').filetype_extend("typescript", { "typescriptreact" })
+
+require('luasnip').filetype_extend("javascript", { "html", "css" })
+require('luasnip').filetype_extend("typescript", { "html", "css" })
+
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {
