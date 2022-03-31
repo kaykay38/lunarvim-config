@@ -163,8 +163,6 @@ lvim.plugins = {
 }
 require'colorizer'.setup()
 require'autosave'.setup()
-require'lsp-config.php'
-require'lsp-config.swift'
 
 require('luasnip').filetype_extend("javascript", { "javascriptreact" })
 require('luasnip').filetype_extend("typescript", { "typescriptreact" })
