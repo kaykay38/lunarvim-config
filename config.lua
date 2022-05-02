@@ -14,8 +14,8 @@ lvim.format_on_save = false
 lvim.transparent_window = true
 lvim.colorscheme = "gruvbox"
 
-lvim.builtin.lualine.sections.lualine_y = {"location"}
-lvim.builtin.lualine.sections.lualine_z = {"progress"}
+lvim.builtin.lualine.sections.lualine_y = { "location" }
+lvim.builtin.lualine.sections.lualine_z = { "progress" }
 vim.opt.relativenumber = true
 vim.opt.wrap = true
 vim.opt.breakindent = true
@@ -24,6 +24,7 @@ vim.opt.showbreak = "↪>>> "
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.inccommand = "split"
+vim.opt.laststatus = 3
 
 -- AUTO COMPLETION
 lvim.builtin.tabnine = { active = true }
@@ -37,28 +38,28 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- edit a default keymapping
 lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
 
-lvim.keys.normal_mode["<leader>x"] = ":BufferClose<cr>"
-vim.api.nvim_set_keymap('n',"<A-f>",":m .+1<cr>==",{ silent = true, noremap = true })
-vim.api.nvim_set_keymap('n',"<A-f>",":m .+1<cr>==",{ silent = true, noremap = true })
-vim.api.nvim_set_keymap('v',"<A-f>",":m '>+1<CR>gv=gv",{ silent = true, noremap = true })
-vim.api.nvim_set_keymap('v',"<A-d>",":m '<-2<CR>gv=gv",{ silent = true, noremap = true })
-vim.api.nvim_set_keymap('i',"<A-d>","<Esc>:m .-2<CR>==gi",{ silent = true, noremap = true })
-vim.api.nvim_set_keymap('i',"<A-f>","<Esc>:m .+1<CR>==gi",{ silent = true, noremap = true })
-vim.api.nvim_set_keymap('i',"<A-f>","<Esc>:m .+1<CR>==gi",{ silent = true, noremap = true })
-lvim.builtin.which_key.mappings["sw"] = {"bviw :call search#search_visual() | lua print('Searching Duckduckgo')<cr>", "Quick Websearch"}
-lvim.builtin.which_key.vmappings["sw"] = {":call search#search_visual() | lua print('Searching Duckduckgo')<cr>", "Quick Websearch"}
-lvim.builtin.which_key.mappings["+"] = {":resize +5<cr>", "Increase window height"}
-lvim.builtin.which_key.mappings["_"] = {":resize -5<cr>", "Decrease window height"}
-lvim.builtin.which_key.mappings["="] = {":vertical resize +5<cr>", "Increase window width"}
-lvim.builtin.which_key.mappings["-"] = {":vertical resize -5<cr>", "Decrease window width"}
+lvim.keys.normal_mode["<leader>x"] = ":BufferKill<cr>"
+vim.api.nvim_set_keymap('n', "<A-f>", ":m .+1<cr>==", { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', "<A-f>", ":m .+1<cr>==", { silent = true, noremap = true })
+vim.api.nvim_set_keymap('v', "<A-f>", ":m '>+1<CR>gv=gv", { silent = true, noremap = true })
+vim.api.nvim_set_keymap('v', "<A-d>", ":m '<-2<CR>gv=gv", { silent = true, noremap = true })
+vim.api.nvim_set_keymap('i', "<A-d>", "<Esc>:m .-2<CR>==gi", { silent = true, noremap = true })
+vim.api.nvim_set_keymap('i', "<A-f>", "<Esc>:m .+1<CR>==gi", { silent = true, noremap = true })
+vim.api.nvim_set_keymap('i', "<A-f>", "<Esc>:m .+1<CR>==gi", { silent = true, noremap = true })
+lvim.builtin.which_key.mappings["sw"] = { "bviw :call search#search_visual() | lua print('Searching Duckduckgo')<cr>", "Quick Websearch" }
+lvim.builtin.which_key.vmappings["sw"] = { ":call search#search_visual() | lua print('Searching Duckduckgo')<cr>", "Quick Websearch" }
+lvim.builtin.which_key.mappings["+"] = { ":resize +5<cr>", "Increase window height" }
+lvim.builtin.which_key.mappings["_"] = { ":resize -5<cr>", "Decrease window height" }
+lvim.builtin.which_key.mappings["="] = { ":vertical resize +5<cr>", "Increase window width" }
+lvim.builtin.which_key.mappings["-"] = { ":vertical resize -5<cr>", "Decrease window width" }
 
 lvim.builtin.which_key.mappings["n"] = {
     name = "Package manager",
-    s = {"<cmd>lua require('package-info').show({force = true})<cr>", "Show package info"},
-    c = {"<cmd>lua require('package-info').change_version()<cr>", "Change package version"},
-    d = {"<cmd>lua require('package-info').delete()<cr>", "Delete package"},
-    i = {"<cmd>lua require('package-info').install()<cr>", "Install new package"},
-    r = {"<cmd>lua require('package-info').install()<cr>", "Reinstall package"},
+    s = { "<cmd>lua require('package-info').show({force = true})<cr>", "Show package info" },
+    c = { "<cmd>lua require('package-info').change_version()<cr>", "Change package version" },
+    d = { "<cmd>lua require('package-info').delete()<cr>", "Delete package" },
+    i = { "<cmd>lua require('package-info').install()<cr>", "Install new package" },
+    r = { "<cmd>lua require('package-info').install()<cr>", "Reinstall package" },
 }
 
 -- Colemak navigation
@@ -152,18 +153,18 @@ lvim.builtin.nvimtree.show_icons.git = 0
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  "javascript",
-  "json",
-  "lua",
-  "python",
-  "typescript",
-  "tsx",
-  "css",
-  "rust",
-  "java",
-  "yaml",
+    "bash",
+    "c",
+    "javascript",
+    "json",
+    "lua",
+    "python",
+    "typescript",
+    "tsx",
+    "css",
+    "rust",
+    "java",
+    "yaml",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -232,21 +233,22 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-  { "norcalli/nvim-colorizer.lua" },
-  { "rktjmp/lush.nvim" },
-  -- {"rebelot/kanagawa.nvim"},
-  -- {"sainnhe/everforest"},
-  { "ellisonleao/gruvbox.nvim" },
-  { "voldikss/vim-browser-search" },
-  { "Pocco81/AutoSave.nvim" },
-  { "tpope/vim-surround" },
-  { "windwp/nvim-ts-autotag" },
-  { "vuki656/package-info.nvim" },
-  { "kevinhwang91/nvim-bqf" },
-  { "mattn/emmet-vim" },
-  { "dccsillag/magma-nvim", run = ":UpdateRemotePlugins" },
-  { "iamcco/markdown-preview.nvim", run = [[sh -c 'cd app && yarn install']], opt = true, ft = "markdown" },
-  { "dhruvasagar/vim-table-mode" },
+    { "norcalli/nvim-colorizer.lua" },
+    { "rktjmp/lush.nvim" },
+    -- {"rebelot/kanagawa.nvim"},
+    -- {"sainnhe/everforest"},
+    { "ellisonleao/gruvbox.nvim" },
+    { "voldikss/vim-browser-search" },
+    { "Pocco81/AutoSave.nvim" },
+    { "tpope/vim-surround" },
+    { "windwp/nvim-ts-autotag" },
+    { "vuki656/package-info.nvim" },
+    { "kevinhwang91/nvim-bqf" },
+    { "mattn/emmet-vim" },
+    { "dccsillag/magma-nvim", run = ":UpdateRemotePlugins" },
+    { "brymer-meneses/grammar-guard.nvim" },
+    { "iamcco/markdown-preview.nvim", run = [[sh -c 'cd app && yarn install']], opt = true, ft = "markdown" },
+    { "dhruvasagar/vim-table-mode" },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
