@@ -39,5 +39,5 @@ require("lspconfig")["texlab"].setup{
 --     { name = "path" },
 --   },
 -- }
-vim.api.nvim_buf_set_keymap("0","n","<leader>lb",":TexlabBuild<CR>", {noremap = true})
-vim.api.nvim_buf_set_keymap("0","n","<leader>lv",":TexlabForward<CR>", {noremap = true})
+vim.api.nvim_buf_set_keymap(0,"n","<leader>lb",":TexlabBuild<CR>", {noremap = true})
+vim.api.nvim_buf_set_keymap(0,"n","<leader>lv",":TexlabForward<CR>", {noremap = true})
