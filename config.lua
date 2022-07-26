@@ -8,7 +8,7 @@ an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
--- GENERAL
+-- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
 lvim.transparent_window = true
