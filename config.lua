@@ -12,7 +12,7 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = false
 lvim.transparent_window = true
-lvim.colorscheme = "gruvbox"
+lvim.colorscheme = "nightfox"
 
 lvim.builtin.lualine.sections.lualine_y = { "location" }
 lvim.builtin.lualine.sections.lualine_z = { "progress" }
@@ -53,12 +53,18 @@ lvim.builtin.which_key.mappings["="] = { ":vertical resize +5<cr>", "Increase wi
 lvim.builtin.which_key.mappings["-"] = { ":vertical resize -5<cr>", "Decrease window width" }
 lvim.builtin.which_key.mappings["a"] = { "ggVG", "Select all" }
 lvim.builtin.which_key.mappings["n"] = {
-  name = "Package manager",
-  s = { "<cmd>lua require('package-info').show({force = true})<cr>", "Show package info" },
-  c = { "<cmd>lua require('package-info').change_version()<cr>", "Change package version" },
-  d = { "<cmd>lua require('package-info').delete()<cr>", "Delete package" },
-  i = { "<cmd>lua require('package-info').install()<cr>", "Install new package" },
-  r = { "<cmd>lua require('package-info').install()<cr>", "Reinstall package" },
+    name = "Package manager",
+    s = { "<cmd>lua require('package-info').show({force = true})<cr>", "Show package info" },
+    c = { "<cmd>lua require('package-info').change_version()<cr>", "Change package version" },
+    d = { "<cmd>lua require('package-info').delete()<cr>", "Delete package" },
+    i = { "<cmd>lua require('package-info').install()<cr>", "Install new package" },
+    r = { "<cmd>lua require('package-info').install()<cr>", "Reinstall package" },
+}
+lvim.builtin.which_key.mappings["r"] = {
+    name = "REST client",
+    r = { "<Plug>RestNvim", "Run request under cursor" },
+    l = { "<Plug>RestNvimLast", "Re-run last request" },
+    p = { "<Plug>RestNvimPreview", "Preview cURL command" }
 }
 
 -- Colemak navigation
@@ -145,25 +151,24 @@ lvim.builtin.which_key.mappings["n"] = {
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
+lvim.builtin.notify.active = false
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  "javascript",
-  "json",
-  "lua",
-  "python",
-  "typescript",
-  "tsx",
-  "css",
-  "rust",
-  "java",
-  "yaml",
+    "bash",
+    "c",
+    "javascript",
+    "json",
+    "lua",
+    "python",
+    "typescript",
+    "tsx",
+    "css",
+    "rust",
+    "java",
+    "yaml",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -197,20 +202,20 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
--- local formatters = require "lvim.lsp.null-ls.formatters"
--- formatters.setup {
---   { command = "black", filetypes = { "python" } },
---   { command = "isort", filetypes = { "python" } },
---   {
---     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
---     command = "prettier",
---     ---@usage arguments to pass to the formatter
---     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
---     extra_args = { "--print-with", "100" },
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "typescript", "typescriptreact" },
---   },
--- }
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { command = "black", filetypes = { "python" } },
+  { command = "isort", filetypes = { "python" } },
+  {
+    -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+    command = "prettier",
+    ---@usage arguments to pass to the formatter
+    -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+    extra_args = { "--print-with", "100" },
+    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+    filetypes = { "typescript", "typescriptreact" },
+  },
+}
 
 -- -- set additional linters
 -- local linters = require "lvim.lsp.null-ls.linters"
@@ -232,23 +237,34 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-  { "norcalli/nvim-colorizer.lua" },
-  { "rktjmp/lush.nvim" },
-  -- {"rebelot/kanagawa.nvim"},
-  -- {"sainnhe/everforest"},
-  { "ellisonleao/gruvbox.nvim" },
-  { "voldikss/vim-browser-search" },
-  { "Pocco81/AutoSave.nvim" },
-  { "tpope/vim-surround" },
-  { "windwp/nvim-ts-autotag" },
-  { "vuki656/package-info.nvim" },
-  { "kevinhwang91/nvim-bqf" },
-  { "mattn/emmet-vim" },
-  { "dccsillag/magma-nvim", run = ":UpdateRemotePlugins" },
-  { "brymer-meneses/grammar-guard.nvim" },
-  { "iamcco/markdown-preview.nvim", run = [[sh -c 'cd app && yarn install']], opt = true, ft = "markdown" },
-  { "dhruvasagar/vim-table-mode" },
+    { "norcalli/nvim-colorizer.lua" },
+    -- { "rktjmp/lush.nvim" },
+    -- { "ellisonleao/gruvbox.nvim" },
+    { "EdenEast/nightfox.nvim" },
+    -- {"rebelot/kanagawa.nvim"},
+    -- {"sainnhe/everforest"},
+    { "voldikss/vim-browser-search" },
+    { "Pocco81/AutoSave.nvim" },
+    { "tpope/vim-surround" },
+    { "windwp/nvim-ts-autotag" },
+    { "vuki656/package-info.nvim" },
+    { "kevinhwang91/nvim-bqf" },
+    { "mattn/emmet-vim" },
+    { "dccsillag/magma-nvim", run = ":UpdateRemotePlugins" },
+    { "brymer-meneses/grammar-guard.nvim" },
+    { "iamcco/markdown-preview.nvim", run = [[sh -c 'cd app && yarn install']], opt = true, ft = "markdown" },
+    { "dhruvasagar/vim-table-mode" },
+    { "github/copilot.vim" },
+    -- { "p00f/nvim-ts-rainbow" },
 }
+
+-- require("nvim-treesitter.configs").setup {
+--     rainbow = {
+--         enable = true,
+--         extended_mode = true,
+--         max_file_lines = nil,
+--     }
+-- }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {

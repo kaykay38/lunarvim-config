@@ -1,0 +1,6 @@
+lvim.builtin.which_key.mappings["r"] = {
+    name = "REST client",
+    r = { "<Plug>RestNvim", "Run request under cursor" },
+    l = { "<Plug>RestNvimLast", "Re-run last request" },
+    p = { "<Plug>RestNvimPreview", "Preview cURL command" }
+}
