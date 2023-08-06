@@ -1,21 +1,10 @@
 --[[
-lvim is the global options object
-
-Linters should be
-filled in as strings with either
-a global executable or a path to
-an executable
+ THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
+ `lvim` is the global options object
 ]]
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
-
--- general
-lvim.log.level = "warn"
-lvim.format_on_save = false
-lvim.transparent_window = true
-lvim.colorscheme = "nightfox"
-
-lvim.builtin.lualine.sections.lualine_y = { "location" }
-lvim.builtin.lualine.sections.lualine_z = { "progress" }
+-- VIM OPTIONS
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
 vim.opt.relativenumber = true
 vim.opt.wrap = true
 vim.opt.breakindent = true
@@ -24,29 +13,57 @@ vim.opt.showbreak = "↪>>> "
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.inccommand = "split"
+
+-- STATUS LINE
+lvim.builtin.lualine.sections.lualine_y = { "location" }
+lvim.builtin.lualine.sections.lualine_z = { "progress" }
 vim.opt.laststatus = 3
+
+lvim.builtin.alpha.active = true
+lvim.builtin.alpha.mode = "dashboard"
+lvim.builtin.terminal.active = true
+lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+
+-- COLOR THEME
+lvim.colorscheme = "lunar"
+lvim.transparent_window = true
+-- lvim.colorscheme = "nightfox"
 
 -- AUTO COMPLETION
 lvim.builtin.tabnine = { active = true }
 
--- KEYMAPPINGS [view all the defaults by pressing <leader>Lk]
+-- GENERAL
+lvim.log.level = "info"
+lvim.format_on_save = {
+    enabled = true,
+    pattern = "*.lua",
+    timeout = 1000,
+}
+-- to disable icons and use a minimalist setup, uncomment the following
+-- lvim.use_icons = false
+
+-- KEYMAPPINGS <https://www.lunarvim.org/docs/configuration/keybindings>
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+
+-- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
+-- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+
+-- -- Use which-key to add extra bindings with the leader-key prefix
+-- lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
+-- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
 -- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 
-lvim.keys.normal_mode["<leader>x"] = ":BufferKill<cr>"
-vim.api.nvim_set_keymap('n', "<A-f>", ":m .+1<cr>==", { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', "<A-f>", ":m .+1<cr>==", { silent = true, noremap = true })
-vim.api.nvim_set_keymap('v', "<A-f>", ":m '>+1<CR>gv=gv", { silent = true, noremap = true })
-vim.api.nvim_set_keymap('v', "<A-d>", ":m '<-2<CR>gv=gv", { silent = true, noremap = true })
-vim.api.nvim_set_keymap('i', "<A-d>", "<Esc>:m .-2<CR>==gi", { silent = true, noremap = true })
-vim.api.nvim_set_keymap('i', "<A-f>", "<Esc>:m .+1<CR>==gi", { silent = true, noremap = true })
-lvim.builtin.which_key.mappings["sw"] = { "bviw :call search#search_visual() | lua print('Searching Duckduckgo')<cr>", "Quick Websearch" }
-lvim.builtin.which_key.vmappings["sw"] = { ":call search#search_visual() | lua print('Searching Duckduckgo')<cr>", "Quick Websearch" }
+lvim.builtin.which_key.mappings["sw"] = { "bviw :call search#search_visual() | lua print('Searching Duckduckgo')<cr>",
+    "Quick Websearch" }
+lvim.builtin.which_key.vmappings["sw"] = { ":call search#search_visual() | lua print('Searching Duckduckgo')<cr>",
+    "Quick Websearch" }
 lvim.builtin.which_key.mappings["+"] = { ":resize +5<cr>", "Increase window height" }
 lvim.builtin.which_key.mappings["_"] = { ":resize -5<cr>", "Decrease window height" }
 lvim.builtin.which_key.mappings["="] = { ":vertical resize +5<cr>", "Increase window width" }
@@ -67,7 +84,7 @@ lvim.builtin.which_key.mappings["r"] = {
     p = { "<Plug>RestNvimPreview", "Preview cURL command" }
 }
 
--- Colemak navigation
+-- COLEMAK NAVIGATION
 -- -- nnoremap u i
 -- vim.api.nvim_set_keymap('n',"u","i",{ silent = true, noremap = true })
 -- -- vnoremap u i
@@ -117,76 +134,28 @@ lvim.builtin.which_key.mappings["r"] = {
 -- vim.api.nvim_set_keymap('n',"I","<nop>",{ silent = true, noremap = true })
 -- END Colemak navigation
 
--- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
--- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
--- local _, actions = pcall(require, "telescope.actions")
--- lvim.builtin.telescope.defaults.mappings = {
---   -- for input mode
---   i = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---     ["<C-n>"] = actions.cycle_history_next,
---     ["<C-p>"] = actions.cycle_history_prev,
---   },
---   -- for normal mode
---   n = {
---     ["<C-j>"] = actions.move_selection_next,
---     ["<C-k>"] = actions.move_selection_previous,
---   },
--- }
+-- Automatically install missing parsers when entering buffer
+lvim.builtin.treesitter.auto_install = true
 
--- Use which-key to add extra bindings with the leader-key prefix
--- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
--- lvim.builtin.which_key.mappings["t"] = {
---   name = "+Trouble",
---   r = { "<cmd>Trouble lsp_references<cr>", "References" },
---   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
---   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
---   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
---   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
---   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Wordspace Diagnostics" },
--- }
+-- lvim.builtin.treesitter.ignore_install = { "haskell" }
 
--- TODO: User Config for predefined plugins
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.alpha.active = true
-lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
+-- -- always installed on startup, useful for parsers without a strict filetype
+-- lvim.builtin.treesitter.ensure_installed = { "comment", "markdown_inline", "regex" }
 
--- if you don't want all the parsers change this to a table of the ones you want
-lvim.builtin.treesitter.ensure_installed = {
-    "bash",
-    "c",
-    "javascript",
-    "json",
-    "lua",
-    "python",
-    "typescript",
-    "tsx",
-    "css",
-    "rust",
-    "java",
-    "yaml",
-}
+-- -- generic LSP settings <https://www.lunarvim.org/docs/languages#lsp-support>
 
-lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enabled = true
+-- --- disable automatic installation of servers
+-- lvim.lsp.installer.setup.automatic_installation = false
 
--- generic LSP settings
-
--- ---@usage disable automatic installation of servers
--- lvim.lsp.automatic_servers_installation = false
-
--- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
--- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
+-- ---configure a server manually. IMPORTANT: Requires `:LvimCacheReset` to take effect
+-- ---see the full default list `:lua =lvim.lsp.automatic_configuration.skipped_servers`
 -- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
 -- require("lvim.lsp.manager").setup("pyright", opts)
 
--- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
--- ---`:LvimInfo` lists which server(s) are skiipped for the current filetype
--- vim.tbl_map(function(server)
+-- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. IMPORTANT: Requires `:LvimCacheReset` to take effect
+-- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
+-- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
 --   return server ~= "emmet_ls"
 -- end, lvim.lsp.automatic_configuration.skipped_servers)
 
@@ -200,42 +169,39 @@ lvim.builtin.treesitter.highlight.enabled = true
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
 
--- -- set a formatter, this will override the language server formatting capabilities (if it exists)
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  { command = "black", filetypes = { "python" } },
-  { command = "isort", filetypes = { "python" } },
-  {
-    -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-    command = "prettier",
-    ---@usage arguments to pass to the formatter
-    -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-    extra_args = { "--print-with", "100" },
-    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-    filetypes = { "typescript", "typescriptreact" },
-  },
-}
-
--- -- set additional linters
+-- -- linters, formatters and code actions <https://www.lunarvim.org/docs/languages#lintingformatting>
+-- local formatters = require "lvim.lsp.null-ls.formatters"
+-- formatters.setup {
+--   { command = "stylua" },
+--   {
+--     command = "prettier",
+--     extra_args = { "--print-width", "100" },
+--     filetypes = { "typescript", "typescriptreact" },
+--   },
+-- }
 -- local linters = require "lvim.lsp.null-ls.linters"
 -- linters.setup {
 --   { command = "flake8", filetypes = { "python" } },
 --   {
---     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
 --     command = "shellcheck",
---     ---@usage arguments to pass to the formatter
---     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
---     extra_args = { "--severity", "warning" },
+--     args = { "--severity", "warning" },
 --   },
+-- }
+-- local code_actions = require "lvim.lsp.null-ls.code_actions"
+-- code_actions.setup {
 --   {
---     command = "codespell",
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "javascript", "python" },
+--     exe = "eslint",
+--     filetypes = { "typescript", "typescriptreact" },
 --   },
 -- }
 
--- Additional Plugins
+-- -- ADDITIONAL PLUGINS <https://www.lunarvim.org/docs/plugins#user-plugins>
 lvim.plugins = {
+    --     {
+    --       "folke/trouble.nvim",
+    --       cmd = "TroubleToggle",
+    --     },
+    --
     { "norcalli/nvim-colorizer.lua" },
     -- { "rktjmp/lush.nvim" },
     -- { "ellisonleao/gruvbox.nvim" },
@@ -249,14 +215,15 @@ lvim.plugins = {
     { "vuki656/package-info.nvim" },
     { "kevinhwang91/nvim-bqf" },
     { "mattn/emmet-vim" },
-    { "dccsillag/magma-nvim", run = ":UpdateRemotePlugins" },
+    { "dccsillag/magma-nvim",             build = ":UpdateRemotePlugins" },
     { "brymer-meneses/grammar-guard.nvim" },
-    { "iamcco/markdown-preview.nvim", run = [[sh -c 'cd app && yarn install']], opt = true, ft = "markdown" },
+    { "iamcco/markdown-preview.nvim",     build = [[sh -c 'cd app && yarn install']], lazy = true, ft = "markdown" },
     { "dhruvasagar/vim-table-mode" },
-    { "github/copilot.vim" },
+    { "zbirenbaum/copilot.lua" }
     -- { "p00f/nvim-ts-rainbow" },
 }
 
+-- -- PLUGIN CONFIGURATIONS
 -- require("nvim-treesitter.configs").setup {
 --     rainbow = {
 --         enable = true,
@@ -265,17 +232,11 @@ lvim.plugins = {
 --     }
 -- }
 
--- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- vim.api.nvim_create_autocmd("BufEnter", {
---   pattern = { "*.json", "*.jsonc" },
---   -- enable wrap mode for json files only
---   command = "setlocal wrap",
--- })
+-- -- AUTOCOMMANDS (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
 -- vim.api.nvim_create_autocmd("FileType", {
 --   pattern = "zsh",
 --   callback = function()
 --     -- let treesitter use bash highlight for zsh files as well
 --     require("nvim-treesitter.highlight").attach(0, "bash")
 --   end,
-vim.api.nvim_set_keymap('i', '<C-j>', 'copilot#Accept("<CR>")', {expr=true, silent=true})
 -- })
